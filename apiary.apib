@@ -1,0 +1,84 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Banri
+
+This is Banri's Api document
+
+## Product Collection [/product]
+
+### List All Products [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (array[Product])
+
+        {
+            "code": 200,
+            "message": "success",
+            "data": [
+                {
+                    "id": 1,
+                    "name": "白班龜背芋",
+                    "photos": ["https://example.com"],
+                    "colorTag": "white",
+                    "category": "Monstera deliciosa",
+                    "detail": "白班龜背芋介紹介紹"
+                }
+            ]
+        }
+
+### Create a New Product [POST]
+
++ Request (application/json)
+
+    + Attributes (Product)
+
+        {
+            "name": "白班龜背芋",
+            "photos": ["https://example.com"],
+            "colorTag": "white",
+            "category": "Monstera deliciosa",
+            "detail": "白班龜背芋介紹介紹"
+        }
+
++ Response 201 (application/json)
+
+    + Attributes (array[Product])
+
+
+    + Headers
+
+            Location: /product/2
+
+    + Body
+
+            {
+                "code": 200,
+                "message": "success",
+                "data": {}
+            }
+            
+### Delete a Product [DELETE /products/{id}]
+
++ Parameters
+    + id (string, required) - The ID of the Product to delete
+
++ Response 204
+            
+
+## Data Structures
+
+### Product (object)
+
+- name (string, required) - The name of the Product
+- category (enum, required) - The category of the Product (one of: "electronics", "clothing", "food")
+- color (enum, required) - The color of the Product (one of: "red", "green", "blue")
+- image (string, required) - The URL of the image of the Product
+
+### 
+(object)
+
+- code (string, required) - The status code of the API response
+- message (string, required) - The explanation of the API response
+- data (object, optional) - The response data object
